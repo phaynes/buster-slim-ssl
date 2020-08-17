@@ -12,6 +12,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Login to packages
+      run: docker login -u  ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag buster-slim-ssl
     - name: Push to packages.
